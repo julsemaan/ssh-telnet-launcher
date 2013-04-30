@@ -4,3 +4,6 @@
 *.jar
 *.war
 *.ear
+deploy
+.project
+Commutateurs_Grappe.dat
