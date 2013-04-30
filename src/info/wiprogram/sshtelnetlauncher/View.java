@@ -33,7 +33,7 @@ public class View extends JFrame{
 		
 		root = new DefaultMutableTreeNode("root");
 		bindings = new Hashtable<DefaultMutableTreeNode,Connection>();
-		DBReader dbr = new DBReader("Commutateurs_Grappe.dat");
+		DBReader dbr = new DBReader("DATABASE.XML");
 		this.populateTreeWithVector(dbr.crawlDatabase(), this.root);
 		
 		

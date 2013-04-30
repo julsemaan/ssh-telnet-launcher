@@ -107,10 +107,6 @@ public class DBReader {
 		}
 		return null;
 	}
-	
-	public static void main(String[] args){
-		DBReader dbr = new DBReader("Commutateurs_Grappe.dat");
-		dbr.crawlDatabase();
-	}
+
 	
 }
