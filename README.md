@@ -2,7 +2,9 @@
 
 **THIS PROGRAM IS IN ALPHA STAGE**
 
-*This program is developed using Java 7*
+*This program is developed using Java 7 and currently doesn't support Java 6*
+
+*A java 6 version will be built soon or you can build it from sources available on github*
 
   - The SSHTelnetLauncher is a program that reads a PuttyCM database (xml) and displays it in a tree form.
   - It was built for Ubuntu but i'm sure it will work for any other distro that has xterm.
