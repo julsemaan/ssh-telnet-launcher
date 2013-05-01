@@ -2,9 +2,6 @@ package info.wiprogram.sshtelnetlauncher;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Vector;
-
 import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.*;
@@ -104,6 +101,6 @@ public class DBReader {
 		}
 		return null;
 	}
-
+	
 	
 }
