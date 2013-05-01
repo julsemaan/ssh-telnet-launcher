@@ -10,7 +10,7 @@ public class DBReader {
 	private String filePath;
 	private Document database;
 	
-	public DBReader(String filePath){
+	public DBReader(String filePath) throws Exception{
 		this.filePath = filePath;
 		this.openDocument();
 		//this.crawlDatabase();
@@ -63,19 +63,24 @@ public class DBReader {
 		
 	}
 	
-	public NamedVector crawlDatabase(){
+	public NamedVector crawlDatabase() throws Exception{
 		NamedVector root = new NamedVector("root");
-		NodeList nl = this.database.getElementsByTagName("configuration").item(0).getChildNodes();
-		for(int i=0; i<nl.getLength(); i++){
-			Node item = nl.item(i);
-			//System.out.println(item.getNodeType());
-			root.add(this.getHashForContainer(item));
+		try{
+			NodeList nl = this.database.getElementsByTagName("configuration").item(0).getChildNodes();
+			for(int i=0; i<nl.getLength(); i++){
+				Node item = nl.item(i);
+				//System.out.println(item.getNodeType());
+				root.add(this.getHashForContainer(item));
+			}
+		}
+		catch(Exception e){
+			throw new Exception("It seems like your database is incorrect.");
 		}
 		return root; 
 	}
 	
 	
-	private Document openDocument(){
+	private Document openDocument() throws Exception{
 		try{
 			// création d'une fabrique de documents
 			DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
@@ -90,14 +95,11 @@ public class DBReader {
 			this.database = document;
 		
 		}catch(ParserConfigurationException pce){
-			System.out.println("Erreur de configuration du parseur DOM");
-			System.out.println("lors de l'appel à fabrique.newDocumentBuilder();");
+			throw new Exception("Error while configuring the DOM parser");
 		}catch(SAXException se){
-			System.out.println("Erreur lors du parsing du document");
-			System.out.println("lors de l'appel à construteur.parse(xml)");
+			throw new Exception("Error while parsing document");
 		}catch(IOException ioe){
-			System.out.println("Erreur d'entrée/sortie");
-			System.out.println("lors de l'appel à construteur.parse(xml)");
+			throw new Exception("Error while opening the database. Does the file exist ?\nPlease check your configuration file and make sure the path to the database is correct.");
 		}
 		return null;
 	}

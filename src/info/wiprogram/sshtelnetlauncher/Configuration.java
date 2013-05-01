@@ -6,13 +6,12 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 public class Configuration {
 	private PropertiesConfiguration configuration;
 	
-	public Configuration(String filePath){
+	public Configuration(String filePath) throws Exception{
 		this.configuration = new PropertiesConfiguration();
 		try {
 			this.configuration.load(filePath);
 		} catch (ConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new Exception("Error while reading configuration. Does the file exist ?");
 		}
 	}
 	

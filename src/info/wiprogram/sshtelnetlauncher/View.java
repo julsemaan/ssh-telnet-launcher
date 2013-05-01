@@ -27,7 +27,7 @@ public class View extends JFrame{
 	private Configuration configuration;
 	
 	
-	public View(Configuration configuration, DBReader database) {
+	public View(Configuration configuration, DBReader database) throws Exception{
 		this.configuration = configuration;
 		
 		getContentPane().setBackground(Color.WHITE);
@@ -70,17 +70,6 @@ public class View extends JFrame{
 		}
 	}
 	
-	
-	public static void main(String[] args){
-		Configuration config = new Configuration("sshtellaunch.conf");
-
-		DBReader database = new DBReader(config.getDatabasePath());
-		View v = new View(config, database);
-		v.setVisible(true);
-		
-		
-	}
-	
 	private class TreeClickListener extends MouseAdapter{
 		@Override
 		public void mouseClicked(MouseEvent e){
@@ -116,6 +105,21 @@ public class View extends JFrame{
 				}
 			}
 		}
+	}
+	
+	public static void main(String[] args){
+		try{
+			Configuration config = new Configuration("sshtellaunch.conf");
+	
+			DBReader database = new DBReader(config.getDatabasePath());
+			View v = new View(config, database);
+			v.setVisible(true);
+		}
+		catch(Exception e){
+			String message = e.getMessage();
+			JOptionPane.showMessageDialog(null, message, "Fatal error", JOptionPane.ERROR_MESSAGE);
+		}
+		
 	}
 
 }
