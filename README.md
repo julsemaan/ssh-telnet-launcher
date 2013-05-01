@@ -11,7 +11,7 @@ No support for stored password, commands. Only supports the ip, protocol and con
 Supports only one database at a time.
 
 ## Download ##
-Alpha 2 : // link coming soon
+Alpha 2 : https://www.dropbox.com/s/0nku1d008us6f3z/ssh-telnet-launcher-alpha2.tar.gz
 
 ## How to install ##
 Extract the content of the archive using 'tar -xzf ssh-telnet-launcher-xxx.tar.gz'
