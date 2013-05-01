@@ -21,6 +21,12 @@
 
 ## How to upgrade ##
 *Coming soon*
+  - For now :
+  	- Go into /usr/local/lib/sshtelnetlauncher
+  	- backup your config somewhere (sshtellauncher.conf)
+  	- ./install.sh --uninstall
+  	- Redo the installation
+  	- Copy your backed up configuration back into /usr/local/lib/sshtelnetlauncher
 
 ## How to configure (MUST BE DONE) ##
   - Then edit the configuration file contained in : /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
