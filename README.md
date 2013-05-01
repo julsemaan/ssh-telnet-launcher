@@ -22,7 +22,7 @@ It will install this program in /usr/local/lib/sshtelnetlauncher/
 ## How to upgrade ##
 *Coming soon*
 
-## How to configure ##
+## How to configure (MUST BE DONE) ##
 Then edit the configuration file contained in : /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
 For database_path put the relative or absolute path to the PuttyCM database you want to use
   - Relative paths start from /usr/local/lib/sshtelnetlauncher
@@ -44,4 +44,6 @@ If your xterm is not configured to use different fonts, size, color, etc. We sug
 Execute './install.sh --xterm-conf'
 After you can do : 'xrdb -load ~/.Xresources' or restart your x session to apply changes to xterm.
 
-
+## Known issues ##
+When no db is found the program just doesn't start
+When no config file is found the program just doesn't start
