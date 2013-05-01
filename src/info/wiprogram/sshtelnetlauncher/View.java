@@ -49,7 +49,7 @@ public class View extends JFrame{
 		JScrollPane scrollPane = new JScrollPane(panelTree);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		this.setSize(300,600);
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("ssh.jpg"));
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.jpg"));
 		this.setTitle("SSH and telnet launcher");
 	}
 	
