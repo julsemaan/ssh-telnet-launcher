@@ -65,7 +65,7 @@ public class DBReader {
 	
 	public NamedVector crawlDatabase(){
 		NamedVector root = new NamedVector("root");
-		NodeList nl = this.database.getFirstChild().getChildNodes();
+		NodeList nl = this.database.getElementsByTagName("configuration").item(0).getChildNodes();
 		for(int i=0; i<nl.getLength(); i++){
 			Node item = nl.item(i);
 			//System.out.println(item.getNodeType());
