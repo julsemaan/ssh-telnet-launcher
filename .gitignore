@@ -1,10 +1,10 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 deploy
 .project
 Commutateurs_Grappe.dat
 Commutateurs_Grappe.dat
+DATABASE.xml
