@@ -21,15 +21,6 @@
   - Execute the install script : 'sudo ./install.sh --install' or 'sudo sh install.sh --install' contained in the directory
   - It will install this program in /usr/local/lib/sshtelnetlauncher/
 
-## How to upgrade ##
-*Coming soon*
-  - For now :
-  	- Go into /usr/local/lib/sshtelnetlauncher
-  	- backup your config somewhere (sshtellauncher.conf)
-  	- ./install.sh --uninstall
-  	- Redo the installation
-  	- Copy your backed up configuration back into /usr/local/lib/sshtelnetlauncher
-
 ## How to configure (MUST BE DONE) ##
   - Then edit the configuration file contained in : /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
   - For database_path put the relative or absolute path to the PuttyCM database you want to use
@@ -40,7 +31,16 @@
 
 ## How to start the program ##
   - Simply execute /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher or use the unity launcher (see below)
-  - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/sshtelnetlauncher'
+  - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher'
+
+## How to upgrade ##
+*Coming soon*
+  - For now :
+    - Go into /usr/local/lib/sshtelnetlauncher
+  	- backup your config somewhere (sshtellauncher.conf)
+  	- ./install.sh --uninstall
+  	- Redo the installation
+  	- Copy your backed up configuration back into /usr/local/lib/sshtelnetlauncher
 
 ## How to uninstall ##
   - Go into /usr/local/lib/sshtelnetlauncher : 'cd /usr/local/lib/sshtelnetlauncher'
