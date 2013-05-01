@@ -15,7 +15,7 @@
 
 ## How to install ##
   - Extract the content of the archive using 'tar -xzf ssh-telnet-launcher-xxx.tar.gz'
-  - Go into the extracted directory : 'cd ssh-telnet-launcher-xxx'l
+  - Go into the extracted directory : 'cd ssh-telnet-launcher-xxx'
   - Execute the install script : 'sudo ./install.sh --install' or 'sudo sh install.sh --install' contained in the directory
   - It will install this program in /usr/local/lib/sshtelnetlauncher/
 
@@ -31,7 +31,7 @@
   	- It may not be installed on your system. Just install it and it will work fine
 
 ## How to start ##
-  - Simply execute /usr/local/lib/sshtelnetlauncher/sshtelnetlauncher or use the unity launcher (see below)
+  - Simply execute /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher or use the unity launcher (see below)
   - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/sshtelnetlauncher'
 
 ## Unity Launcher ##
