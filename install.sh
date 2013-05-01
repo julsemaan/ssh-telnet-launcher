@@ -12,7 +12,7 @@ do
 		cp addons/.Xresources /home/$user/.Xresources
 	elif [ $arg = "--install" ]; then
 		echo "Installing software"
-		cp . /usr/local/sshtelnetlauncher
+		cp -R ./ /usr/local/lib/sshtelnetlauncher
 	fi
 done
 

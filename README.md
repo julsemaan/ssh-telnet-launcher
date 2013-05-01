@@ -16,7 +16,7 @@ Alpha 2 : // link coming soon
 ## How to install ##
 Extract the content of the archive using 'tar -xzf ssh-telnet-launcher-xxx.tar.gz'
 Go into the extracted directory : 'cd ssh-telnet-launcher-xxx'l
-Execute the install script : './install.sh --install' or 'sh install.sh --install' contained in the directory
+Execute the install script : 'sudo ./install.sh --install' or 'sudo sh install.sh --install' contained in the directory
 It will install this program in /usr/local/lib/sshtelnetlauncher/
 
 ## How to upgrade ##
