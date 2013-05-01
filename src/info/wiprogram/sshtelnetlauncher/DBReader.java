@@ -33,7 +33,6 @@ public class DBReader {
 			if (n.getNodeName().equals("container")){
 				NamedNodeMap attributes = n.getAttributes();
 				String name = attributes.getNamedItem("name").getNodeValue();
-				System.out.println(name);
 				connections.add(this.getHashForContainer(n));
 			}
 			else if(n.getNodeName().equals("connection")){
@@ -43,7 +42,6 @@ public class DBReader {
 				
 				for(int j=0;j<connection_info.getLength();j++){
 					Node connectionNode = connection_info.item(j);
-					//System.out.println(connectionNode);
 					if(connection_info.item(j).getNodeName().equals("name")){
 						name = connectionNode.getTextContent();
 						
@@ -58,7 +56,6 @@ public class DBReader {
 				
 				if(ip != "" && name != "" && protocol != ""){
 					connections.add(new Connection(name, ip, protocol));
-					System.out.println(ip + " " + name + " " + protocol);
 				}
 				
 				

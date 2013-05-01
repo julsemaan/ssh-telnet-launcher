@@ -52,9 +52,9 @@ public class View extends JFrame{
 					if(tp != null){
 						DefaultMutableTreeNode dmtn = (DefaultMutableTreeNode)tp.getLastPathComponent();
 						Connection c = bindings.get(dmtn);
-						System.out.println(c);
+						//System.out.println(c);
 						if(c != null){
-							System.out.println(c.getProtocol());
+							//System.out.println(c.getProtocol());
 							if(c.getProtocol().equals("SSH")){
 								String username=JOptionPane.showInputDialog("Enter username");
 								String command = "/usr/bin/ssh "+username+"@"+c.getIp();
@@ -109,10 +109,12 @@ public class View extends JFrame{
 	
 	
 	public static void main(String[] args){
-		
+	
 		View v = new View();
 		v.setVisible(true);
-
+		
+		
+		
 	}
 
 }
