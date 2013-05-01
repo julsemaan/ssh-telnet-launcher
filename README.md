@@ -2,6 +2,9 @@
 
 **THIS PROGRAM IS IN ALPHA STAGE**
 
+**Alpha3 should be a version that is *fully* working**
+*Tested on Ubuntu 12.04LTS*
+*Please report any issues here on github*
 *This program is developed using Java 7*
 
   - The SSHTelnetLauncher is a program that reads a PuttyCM database (xml) and displays it in a tree form.
@@ -11,7 +14,7 @@
   - Supports only one database at a time.
 
 ## Download ##
-  - Alpha 3 : https://www.dropbox.com/s/5dww7ndnpkr2slp/ssh-telnet-launcher-alpha3.tar.gz
+  - Alpha3 : https://www.dropbox.com/s/5dww7ndnpkr2slp/ssh-telnet-launcher-alpha3.tar.gz
 
 ## How to install ##
   - Extract the content of the archive using 'tar -xzf ssh-telnet-launcher-xxx.tar.gz'
