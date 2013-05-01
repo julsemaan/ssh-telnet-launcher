@@ -30,20 +30,25 @@
   - Then for telnet_path put the telnet command path (usually /usr/bin/telnet). To find it use 'whereis telnet'.
   	- It may not be installed on your system. Just install it and it will work fine
 
-## How to start ##
+## How to start the program ##
   - Simply execute /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher or use the unity launcher (see below)
   - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/sshtelnetlauncher'
 
+## How to uninstall ##
+  - Go into /usr/local/lib/sshtelnetlauncher
+  - Execute 'sudo ./install.sh --uninstall'
+
 ## Unity Launcher ##
   - A unity launcher (for Ubuntu 11+) is provided in the folder
+  	- Go in the folder you installed from or in /usr/local/lib/sshtelnetlauncher
   	- Execute './install.sh --unity-launcher'
+  	- Input the user for which you wish the launcher to be installed
+  	  - This has to be the user's folder name under /home
   	- It will then appear in your dash
 
 ## xterm customization (highly recommended) ##
   - If your xterm is not configured to use different fonts, size, color, etc. We suggest you use our configuration file for a better experience.
   - Execute './install.sh --xterm-conf'
+  - Input the user for which you wish the configuration to be installed
+ 	- This has to be the user's folder name under /home
   - After you can do : 'xrdb -load ~/.Xresources' or restart your x session to apply changes to xterm.
-
-## Known issues ##
-  - When no db is found the program just doesn't start
-  - When no config file is found the program just doesn't start
