@@ -43,8 +43,10 @@
   - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/sshtelnetlauncher'
 
 ## How to uninstall ##
-  - Go into /usr/local/lib/sshtelnetlauncher
+  - Go into /usr/local/lib/sshtelnetlauncher : 'cd /usr/local/lib/sshtelnetlauncher'
   - Execute 'sudo ./install.sh --uninstall'
+    - This will uninstall everything (except for the xterm configuration if you installed it)
+    - To delete the xterm configuration 'rm ~/.Xresources'
 
 ## Unity Launcher ##
   - A unity launcher (for Ubuntu 11+) is provided in the folder
