@@ -11,7 +11,7 @@
   - Supports only one database at a time.
 
 ## Download ##
-  - Alpha 2 : https://www.dropbox.com/s/0nku1d008us6f3z/ssh-telnet-launcher-alpha2.tar.gz
+  - Alpha 3 : https://www.dropbox.com/s/5dww7ndnpkr2slp/ssh-telnet-launcher-alpha3.tar.gz
 
 ## How to install ##
   - Extract the content of the archive using 'tar -xzf ssh-telnet-launcher-xxx.tar.gz'
