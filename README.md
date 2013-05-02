@@ -2,15 +2,13 @@
 
 **THIS PROGRAM IS IN ALPHA STAGE**
 
-**Alpha3 should be a version that is *fully* working**
+**From Alpha5 it is a version that is works *correctly* **
 
 *Tested on Ubuntu 12.04LTS*
 
 *Please report any issues on github*
 
-*This program is developed using Java 7 and currently doesn't support Java 6*
-
-*A java 6 version will be built soon or you can build it from sources available on github*
+*This program is developed using Java*
 
   - The SSHTelnetLauncher is a program that reads a PuttyCM database (xml) and displays it in a tree form.
   - It was built for Ubuntu but i'm sure it will work for any other distro that has xterm.
@@ -27,13 +25,13 @@
   - Execute the install script : 'sudo ./install.sh --install' or 'sudo sh install.sh --install' contained in the directory
   - It will install this program in /usr/local/lib/sshtelnetlauncher/
 
-## How to configure (MUST BE DONE) ##
+## How to configure ##
   - Edit the configuration file contained in : /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
   - For database_path put the relative or absolute path to the PuttyCM database you want to use
   	- Relative paths start from /usr/local/lib/sshtelnetlauncher
-  - Then for ssh_path put the ssh command patlh (usually /usr/bin/ssh). To find it use 'whereis ssh'.
+  - Then for ssh_path put the ssh command path (usually /usr/bin/ssh). To find it use 'whereis ssh'.
   - Then for telnet_path put the telnet command path (usually /usr/bin/telnet). To find it use 'whereis telnet'.
-  	- It may not be installed on your system. Just install it and it will work fine
+  	- It may not be installed on your system. Just install it and it will work fine 'sudo apt-get install telnet'
 
 ## How to start the program ##
   - Simply execute /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher or install the Unity launcher (see below)
@@ -67,4 +65,4 @@
   - Execute './install.sh --xterm-conf'
   - Input the user for which you wish the configuration to be installed
  	- This has to be the user's folder name under /home
-  - After you can do : 'xrdb -load ~/.Xresources' or restart your x session to apply changes to xterm.
+  - After you can do : 'xrdb -load <user>/.Xresources' or restart your x session to apply changes to xterm.
