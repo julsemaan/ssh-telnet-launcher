@@ -103,6 +103,7 @@ public class View extends JFrame{
 		ipPanel.add(labelIp);
 		
 		ipField = new JTextField();
+		ipField.setPreferredSize(new Dimension(4, 21));
 		ipPanel.add(ipField);
 		ipField.setColumns(10);
 		ipField.addActionListener(new ManualConnectionListener());
@@ -172,7 +173,7 @@ public class View extends JFrame{
 	private class ManualConnectionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println((String)View.this.comboProtocols.getSelectedItem());
+			//System.out.println((String)View.this.comboProtocols.getSelectedItem());
 			Connection c = new Connection("", View.this.ipField.getText(), (String)View.this.comboProtocols.getSelectedItem());
 			View.this.openConnection(c);
 		}
