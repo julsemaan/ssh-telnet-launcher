@@ -58,6 +58,9 @@ public class View extends JFrame{
 	public View(Configuration configuration, DBReader database) throws Exception{
 		this.configuration = configuration;
 		this.database = database;
+		
+		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+		
 		getContentPane().setBackground(Color.WHITE);
 		
 		root = new DefaultMutableTreeNode("root");
@@ -86,24 +89,18 @@ public class View extends JFrame{
 		
 		JPanel panelManualConnection = new JPanel();
 		mainPanel.add(panelManualConnection, BorderLayout.NORTH);
-		panelManualConnection.setPreferredSize(new Dimension(300, 95));
+		panelManualConnection.setPreferredSize(new Dimension(400, 45));
 		panelManualConnection.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel manualConnectionLabel = new JLabel("Manual Connection");
-		manualConnectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		manualConnectionLabel.setPreferredSize(new Dimension(200, 15));
-		panelManualConnection.add(manualConnectionLabel);
-		
 		JPanel ipPanel = new JPanel();
-		ipPanel.setPreferredSize(new Dimension(200, 20));
 		panelManualConnection.add(ipPanel);
-		ipPanel.setLayout(new BoxLayout(ipPanel, BoxLayout.X_AXIS));
+		ipPanel.setLayout(new FlowLayout());
 		
 		JLabel labelIp = new JLabel("IP : ");
 		ipPanel.add(labelIp);
 		
 		ipField = new JTextField();
-		ipField.setPreferredSize(new Dimension(4, 21));
+		ipField.setPreferredSize(new Dimension(4, 25));
 		ipPanel.add(ipField);
 		ipField.setColumns(10);
 		ipField.addActionListener(new ManualConnectionListener());
@@ -121,7 +118,7 @@ public class View extends JFrame{
 		
 		panelTree = new JPanel();
 		panelTree.setBackground(Color.WHITE);
-		panelTree.setMinimumSize(new Dimension(300, 500));
+		//panelTree.setMinimumSize(new Dimension(300, 500));
 		panelTree.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		tree = new JTree(this.root);
 		tree.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -129,8 +126,9 @@ public class View extends JFrame{
 		panelTree.add(tree);
 		scrollPane = new JScrollPane(panelTree);
 		mainPanel.add(scrollPane, BorderLayout.CENTER);
-		scrollPane.setPreferredSize(new Dimension(300,450));
-		this.setSize(300,600);
+		//scrollPane.setPreferredSize(new Dimension(300,450));
+		this.setSize(400,600);
+		this.setMinimumSize(new Dimension(400,200));
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.jpg"));
 		this.setTitle("SSH and telnet launcher");
 	}
@@ -261,6 +259,7 @@ public class View extends JFrame{
 	}
 	
 	public static void main(String[] args){
+		
 		try {
 	        UIManager.setLookAndFeel(
 	        		UIManager.getSystemLookAndFeelClassName());
