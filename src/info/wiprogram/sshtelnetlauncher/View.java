@@ -13,6 +13,8 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -70,6 +72,7 @@ public class View extends JFrame{
 		ipField = new JTextField();
 		ipPanel.add(ipField);
 		ipField.setColumns(10);
+		ipField.addActionListener(new ManualConnectionListener());
 		
 		JPanel panel = new JPanel();
 		panelManualConnection.add(panel);
@@ -79,7 +82,7 @@ public class View extends JFrame{
 		panel.add(comboProtocols);
 		
 		JButton btnConnect = new JButton("Connect");
-		btnConnect.addMouseListener(new ManualConnectionListener());
+		btnConnect.addActionListener(new ManualConnectionListener());
 		panel.add(btnConnect);
 		
 		
@@ -134,8 +137,9 @@ public class View extends JFrame{
 		}
 	}
 	
-	private class ManualConnectionListener extends MouseAdapter{
-		public void mouseClicked(MouseEvent e){
+	private class ManualConnectionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			System.out.println((String)View.this.comboProtocols.getSelectedItem());
 			Connection c = new Connection("", View.this.ipField.getText(), (String)View.this.comboProtocols.getSelectedItem());
 			View.this.openConnection(c);
