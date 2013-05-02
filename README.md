@@ -3,11 +3,10 @@
 **THIS PROGRAM IS IN ALPHA STAGE**
 
 **Alpha3 should be a version that is *fully* working**
+
 *Tested on Ubuntu 12.04LTS*
 
 *Please report any issues on github*
-
-*This program is developed using Java 7*
 
 *This program is developed using Java 7 and currently doesn't support Java 6*
 
@@ -20,7 +19,7 @@
   - Supports only one database at a time.
 
 ## Download ##
-  - Alpha3 : https://www.dropbox.com/s/5dww7ndnpkr2slp/ssh-telnet-launcher-alpha3.tar.gz
+  - Alpha4 : https://www.dropbox.com/s/iujd79fadbh08ag/ssh-telnet-launcher-alpha4.tar.gz
 
 ## How to install ##
   - Extract the content of the archive using 'tar -xzf ssh-telnet-launcher-xxx.tar.gz'
@@ -29,7 +28,7 @@
   - It will install this program in /usr/local/lib/sshtelnetlauncher/
 
 ## How to configure (MUST BE DONE) ##
-  - Then edit the configuration file contained in : /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
+  - Edit the configuration file contained in : /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
   - For database_path put the relative or absolute path to the PuttyCM database you want to use
   	- Relative paths start from /usr/local/lib/sshtelnetlauncher
   - Then for ssh_path put the ssh command patlh (usually /usr/bin/ssh). To find it use 'whereis ssh'.
@@ -37,7 +36,7 @@
   	- It may not be installed on your system. Just install it and it will work fine
 
 ## How to start the program ##
-  - Simply execute /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher or use the unity launcher (see below)
+  - Simply execute /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher or install the Unity launcher (see below)
   - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher'
 
 ## How to upgrade ##
