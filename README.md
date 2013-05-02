@@ -4,8 +4,14 @@
 
 **Alpha3 should be a version that is *fully* working**
 *Tested on Ubuntu 12.04LTS*
-*Please report any issues here on github*
+
+*Please report any issues on github*
+
 *This program is developed using Java 7*
+
+*This program is developed using Java 7 and currently doesn't support Java 6*
+
+*A java 6 version will be built soon or you can build it from sources available on github*
 
   - The SSHTelnetLauncher is a program that reads a PuttyCM database (xml) and displays it in a tree form.
   - It was built for Ubuntu but i'm sure it will work for any other distro that has xterm.
@@ -22,15 +28,6 @@
   - Execute the install script : 'sudo ./install.sh --install' or 'sudo sh install.sh --install' contained in the directory
   - It will install this program in /usr/local/lib/sshtelnetlauncher/
 
-## How to upgrade ##
-*Coming soon*
-  - For now :
-  	- Go into /usr/local/lib/sshtelnetlauncher
-  	- backup your config somewhere (sshtellauncher.conf)
-  	- ./install.sh --uninstall
-  	- Redo the installation
-  	- Copy your backed up configuration back into /usr/local/lib/sshtelnetlauncher
-
 ## How to configure (MUST BE DONE) ##
   - Then edit the configuration file contained in : /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
   - For database_path put the relative or absolute path to the PuttyCM database you want to use
@@ -41,11 +38,22 @@
 
 ## How to start the program ##
   - Simply execute /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher or use the unity launcher (see below)
-  - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/sshtelnetlauncher'
+  - If this fails do 'chmod +x /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher'
+
+## How to upgrade ##
+*Coming soon*
+  - For now :
+    - Go into /usr/local/lib/sshtelnetlauncher
+  	- backup your config somewhere (sshtellauncher.conf)
+  	- ./install.sh --uninstall
+  	- Redo the installation
+  	- Copy your backed up configuration back into /usr/local/lib/sshtelnetlauncher
 
 ## How to uninstall ##
-  - Go into /usr/local/lib/sshtelnetlauncher
+  - Go into /usr/local/lib/sshtelnetlauncher : 'cd /usr/local/lib/sshtelnetlauncher'
   - Execute 'sudo ./install.sh --uninstall'
+    - This will uninstall everything (except for the xterm configuration if you installed it)
+    - To delete the xterm configuration 'rm ~/.Xresources'
 
 ## Unity Launcher ##
   - A unity launcher (for Ubuntu 11+) is provided in the folder
