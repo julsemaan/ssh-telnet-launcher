@@ -74,7 +74,7 @@ public class View extends JFrame{
 		JPanel panel = new JPanel();
 		panelManualConnection.add(panel);
 		
-		String protocols[] = {"ssh", "telnet"};
+		String protocols[] = {"SSH", "Telnet"};
 		comboProtocols = new JComboBox(protocols);
 		panel.add(comboProtocols);
 		
@@ -136,7 +136,7 @@ public class View extends JFrame{
 	
 	private class ManualConnectionListener extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
-			System.out.println("CLICK");
+			System.out.println((String)View.this.comboProtocols.getSelectedItem());
 			Connection c = new Connection("", View.this.ipField.getText(), (String)View.this.comboProtocols.getSelectedItem());
 			View.this.openConnection(c);
 		}
