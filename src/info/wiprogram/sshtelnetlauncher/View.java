@@ -18,6 +18,16 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Hashtable;
 import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.CardLayout;
+import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 
 public class View extends JFrame{
@@ -25,6 +35,8 @@ public class View extends JFrame{
 	private DefaultMutableTreeNode root;
 	private Hashtable<DefaultMutableTreeNode,Connection> bindings;
 	private Configuration configuration;
+	private JTextField ipField;
+	private JComboBox comboProtocols;
 	
 	
 	public View(Configuration configuration, DBReader database) throws Exception{
@@ -35,18 +47,53 @@ public class View extends JFrame{
 		root = new DefaultMutableTreeNode("root");
 		bindings = new Hashtable<DefaultMutableTreeNode,Connection>();
 		this.populateTreeWithVector(database.crawlDatabase(), this.root);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JPanel panelManualConnection = new JPanel();
+		panelManualConnection.setPreferredSize(new Dimension(300, 95));
+		getContentPane().add(panelManualConnection, BorderLayout.NORTH);
+		panelManualConnection.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel manualConnectionLabel = new JLabel("Manual Connection");
+		manualConnectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		manualConnectionLabel.setPreferredSize(new Dimension(200, 15));
+		panelManualConnection.add(manualConnectionLabel);
+		
+		JPanel ipPanel = new JPanel();
+		ipPanel.setPreferredSize(new Dimension(200, 20));
+		panelManualConnection.add(ipPanel);
+		ipPanel.setLayout(new BoxLayout(ipPanel, BoxLayout.X_AXIS));
+		
+		JLabel labelIp = new JLabel("IP : ");
+		ipPanel.add(labelIp);
+		
+		ipField = new JTextField();
+		ipPanel.add(ipField);
+		ipField.setColumns(10);
+		
+		JPanel panel = new JPanel();
+		panelManualConnection.add(panel);
+		
+		String protocols[] = {"ssh", "telnet"};
+		comboProtocols = new JComboBox(protocols);
+		panel.add(comboProtocols);
+		
+		JButton btnConnect = new JButton("Connect");
+		btnConnect.addMouseListener(new ManualConnectionListener());
+		panel.add(btnConnect);
 		
 		
 		
 		JPanel panelTree = new JPanel();
 		panelTree.setBackground(Color.WHITE);
-		panelTree.setMinimumSize(new Dimension(300, 600));
+		panelTree.setMinimumSize(new Dimension(300, 500));
 		panelTree.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		tree = new JTree(this.root);
 		tree.setAlignmentX(Component.LEFT_ALIGNMENT);
 		tree.addMouseListener(new TreeClickListener());
 		panelTree.add(tree);
 		JScrollPane scrollPane = new JScrollPane(panelTree);
+		scrollPane.setPreferredSize(new Dimension(300,450));
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		this.setSize(300,600);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.jpg"));
@@ -78,30 +125,50 @@ public class View extends JFrame{
 				if(tp != null){
 					DefaultMutableTreeNode dmtn = (DefaultMutableTreeNode)tp.getLastPathComponent();
 					Connection c = bindings.get(dmtn);
-					//System.out.println(c);
-					if(c != null){
-						//System.out.println(c.getProtocol());
-						if(c.getProtocol().equals("SSH")){
-							String username=JOptionPane.showInputDialog("Enter username");
-							String command = View.this.configuration.getSSHPath()+" "+username+"@"+c.getIp();
-							try {
-								new ProcessBuilder("xterm", "-e",  command).start();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-						}
-						else if(c.getProtocol().equals("Telnet")){
-							String command = View.this.configuration.getTelnetPath()+" "+c.getIp();
-							try {
-								new ProcessBuilder("xterm", "-e",  command).start();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-						}
-					}
+					View.this.openConnection(c);
 				}
 				else{
 					System.out.println("Click event received for nothing");
+				}
+			}
+		}
+	}
+	
+	private class ManualConnectionListener extends MouseAdapter{
+		public void mouseClicked(MouseEvent e){
+			System.out.println("CLICK");
+			Connection c = new Connection("", View.this.ipField.getText(), (String)View.this.comboProtocols.getSelectedItem());
+			View.this.openConnection(c);
+		}
+	}
+	
+	private void openConnection(Connection conn){
+		//System.out.println(c);
+		if(conn != null){
+			//System.out.println(c.getProtocol());
+			if(conn.getProtocol().equals("SSH")){
+				String username=JOptionPane.showInputDialog("Enter username");
+				if(username != null){
+					String command;
+					if(username == ""){
+						command = this.configuration.getSSHPath()+" -l '' "+conn.getIp();
+					}
+					else{
+						command = this.configuration.getSSHPath()+" "+username+"@"+conn.getIp();
+					}
+					try {
+						new ProcessBuilder("xterm", "-e",  command).start();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+			else if(conn.getProtocol().equals("Telnet")){
+				String command = this.configuration.getTelnetPath()+" "+conn.getIp();
+				try {
+					new ProcessBuilder("xterm", "-e",  command).start();
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				}
 			}
 		}
