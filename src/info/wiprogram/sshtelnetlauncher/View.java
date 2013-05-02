@@ -219,6 +219,13 @@ public class View extends JFrame{
 	private void openConnection(Connection conn){
 		//System.out.println(c);
 		if(conn != null){
+			String title;
+			if(conn.getName().isEmpty()){
+				title = conn.getIp();
+			}
+			else{
+				title = conn.getName();
+			}
 			//System.out.println(c.getProtocol());
 			if(conn.getProtocol().equals("SSH")){
 				String username=JOptionPane.showInputDialog("Enter username");
@@ -231,7 +238,7 @@ public class View extends JFrame{
 						command = this.configuration.getSSHPath()+" "+username+"@"+conn.getIp();
 					}
 					try {
-						new ProcessBuilder("xterm", "-e",  command).start();
+						new ProcessBuilder("xterm", "-T", title, "-n", title,  "-e",  command).start();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -240,7 +247,7 @@ public class View extends JFrame{
 			else if(conn.getProtocol().equals("Telnet")){
 				String command = this.configuration.getTelnetPath()+" "+conn.getIp();
 				try {
-					new ProcessBuilder("xterm", "-e",  command).start();
+					new ProcessBuilder("xterm", "-T", title, "-n", title, "-e",  command).start();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
