@@ -99,7 +99,7 @@ public class DBReader {
 		}catch(SAXException se){
 			throw new Exception("Error while parsing document");
 		}catch(IOException ioe){
-			throw new Exception("Error while opening the database. Does the file exist ?\nPlease check your configuration file and make sure the path to the database is correct.");
+			throw new Exception("Error while opening the database. Does the file "+this.filePath+" exist ?\nPlease check your configuration file and make sure the path to the database is correct.");
 		}
 		return null;
 	}

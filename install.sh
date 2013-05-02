@@ -15,6 +15,7 @@ do
 	elif [ $arg = "--install" ]; then
 		echo "Installing software"
 		cp -R ./ /usr/local/lib/sshtelnetlauncher
+		chmod a+rwx /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
 	elif [ $arg = "--uninstall" ];then
 		echo "Uninstalling software"
 		rm -rf /usr/local/lib/sshtelnetlauncher

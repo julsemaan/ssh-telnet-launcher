@@ -8,6 +8,7 @@ import java.awt.Dimension;
 
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -17,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
 import javax.swing.JScrollPane;
@@ -28,8 +30,13 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.CardLayout;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 
 
 public class View extends JFrame{
@@ -37,23 +44,46 @@ public class View extends JFrame{
 	private DefaultMutableTreeNode root;
 	private Hashtable<DefaultMutableTreeNode,Connection> bindings;
 	private Configuration configuration;
+	private DBReader database;
 	private JTextField ipField;
 	private JComboBox comboProtocols;
-	
+	private JMenuItem mntmSelectDatabase;
+	private JMenuItem mntmOptions;
+	private JPanel panelTree;
+	private JScrollPane scrollPane;
 	
 	public View(Configuration configuration, DBReader database) throws Exception{
 		this.configuration = configuration;
-		
+		this.database = database;
 		getContentPane().setBackground(Color.WHITE);
 		
 		root = new DefaultMutableTreeNode("root");
 		bindings = new Hashtable<DefaultMutableTreeNode,Connection>();
 		this.populateTreeWithVector(database.crawlDatabase(), this.root);
+		
+		String protocols[] = {"SSH", "Telnet"};
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
+		JMenuBar menuBar = new JMenuBar();
+		getContentPane().add(menuBar, BorderLayout.NORTH);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		mntmSelectDatabase = new JMenuItem("Select database");
+		this.mntmSelectDatabase.addActionListener(new MenuListener());
+		mnFile.add(mntmSelectDatabase);
+		
+		mntmOptions = new JMenuItem("Options");
+		mnFile.add(mntmOptions);
+		
+		JPanel mainPanel = new JPanel();
+		getContentPane().add(mainPanel);
+		mainPanel.setLayout(new BorderLayout(0, 0));
+		
 		JPanel panelManualConnection = new JPanel();
+		mainPanel.add(panelManualConnection, BorderLayout.NORTH);
 		panelManualConnection.setPreferredSize(new Dimension(300, 95));
-		getContentPane().add(panelManualConnection, BorderLayout.NORTH);
 		panelManualConnection.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel manualConnectionLabel = new JLabel("Manual Connection");
@@ -76,8 +106,6 @@ public class View extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panelManualConnection.add(panel);
-		
-		String protocols[] = {"SSH", "Telnet"};
 		comboProtocols = new JComboBox(protocols);
 		panel.add(comboProtocols);
 		
@@ -87,7 +115,7 @@ public class View extends JFrame{
 		
 		
 		
-		JPanel panelTree = new JPanel();
+		panelTree = new JPanel();
 		panelTree.setBackground(Color.WHITE);
 		panelTree.setMinimumSize(new Dimension(300, 500));
 		panelTree.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
@@ -95,9 +123,9 @@ public class View extends JFrame{
 		tree.setAlignmentX(Component.LEFT_ALIGNMENT);
 		tree.addMouseListener(new TreeClickListener());
 		panelTree.add(tree);
-		JScrollPane scrollPane = new JScrollPane(panelTree);
+		scrollPane = new JScrollPane(panelTree);
+		mainPanel.add(scrollPane, BorderLayout.CENTER);
 		scrollPane.setPreferredSize(new Dimension(300,450));
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		this.setSize(300,600);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.jpg"));
 		this.setTitle("SSH and telnet launcher");
@@ -143,6 +171,48 @@ public class View extends JFrame{
 			System.out.println((String)View.this.comboProtocols.getSelectedItem());
 			Connection c = new Connection("", View.this.ipField.getText(), (String)View.this.comboProtocols.getSelectedItem());
 			View.this.openConnection(c);
+		}
+	}
+	
+	private class MenuListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JMenuItem source = (JMenuItem)e.getSource();
+			if( source == View.this.mntmSelectDatabase ){
+				JFileChooser fc = new JFileChooser();
+				int result = fc.showOpenDialog(View.this);
+				if (result == fc.APPROVE_OPTION){
+					File f = fc.getSelectedFile();
+					try {
+						View.this.configuration.setDatabasePath(f.getAbsolutePath());
+						View.this.database = new DBReader(View.this.configuration.getDatabasePath());
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(View.this, "Error while saving configuration.\nDoes the config file exist ?\nDoes the database you selected exists ?", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
+					try {
+						DefaultMutableTreeNode newRoot = new DefaultMutableTreeNode("root");
+						View.this.populateTreeWithVector(View.this.database.crawlDatabase(), newRoot);
+						JTree newTree = new JTree(newRoot);
+						//really ugly but doesn't want to repaint without that....
+						newTree.setSize(new Dimension(100,100));
+						
+						View.this.root = newRoot;
+						View.this.panelTree.add(newTree);
+						View.this.panelTree.remove(View.this.tree);
+						View.this.tree = newTree;
+						View.this.root = newRoot;
+						View.this.tree.addMouseListener(new TreeClickListener());
+						View.this.repaint();
+							
+
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(View.this, "Error while reading database.\nMake sure it is a PuttyCM database", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
+					
+				}
+			}
 		}
 	}
 	
