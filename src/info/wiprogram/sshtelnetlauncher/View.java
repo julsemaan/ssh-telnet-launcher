@@ -36,6 +36,8 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 
@@ -256,6 +258,13 @@ public class View extends JFrame{
 	}
 	
 	public static void main(String[] args){
+		try {
+	        UIManager.setLookAndFeel(
+	        		UIManager.getSystemLookAndFeelClassName());
+	    } 
+	    catch (Exception e) {
+	       System.out.println("No OS look and feel");
+	    }
 		try{
 			Configuration config = new Configuration("sshtellaunch.conf");
 	
