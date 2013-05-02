@@ -13,6 +13,7 @@ import javax.swing.tree.TreePath;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -143,8 +144,9 @@ public class View extends JFrame{
 			}
 			else if( o instanceof Connection ){
 				Connection c = (Connection)(o);
-				DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(c.getName());
+				DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(c.getName()+" - "+c.getIp());
 				current.add(dmtn);
+				
 				bindings.put(dmtn, c);
 			}
 		}
