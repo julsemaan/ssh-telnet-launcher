@@ -17,7 +17,7 @@
   - Supports only one database at a time.
 
 ## Download ##
-  - Alpha4 : http://bit.ly/105sJ30
+  - Alpha5 : http://bit.ly/ssh-telnet-launcher-alpha5
 
 ## How to install ##
   - Extract the content of the archive using 'tar -xzf ssh-telnet-launcher-xxx.tar.gz'
