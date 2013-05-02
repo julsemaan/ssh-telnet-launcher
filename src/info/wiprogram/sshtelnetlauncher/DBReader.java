@@ -16,6 +16,10 @@ public class DBReader {
 		//this.crawlDatabase();
 	}
 	
+	public String getFilePath(){
+		return this.filePath;
+	}
+	
 	private NamedVector getHashForContainer(Node container){
 		//System.out.println(container.getNodeName());
 		if(container.getNodeName().equals("#text")){

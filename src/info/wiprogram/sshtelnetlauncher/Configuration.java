@@ -17,7 +17,7 @@ public class Configuration {
 		}
 	}
 	
-	private void save() throws Exception{
+	private void save() throws ConfigurationException{
 		this.configuration.save(this.filePath);
 	}
 	
@@ -25,7 +25,7 @@ public class Configuration {
 		return (String)this.configuration.getProperty(key);
 	}
 	
-	public void setDatabasePath(String path) throws Exception{
+	public void setDatabasePath(String path) throws ConfigurationException{
 		this.configuration.setProperty("database_path", path);
 		this.save();
 	}

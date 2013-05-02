@@ -40,6 +40,8 @@ import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.apache.commons.configuration.ConfigurationException;
+
 
 
 public class View extends JFrame{
@@ -182,15 +184,17 @@ public class View extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			JMenuItem source = (JMenuItem)e.getSource();
 			if( source == View.this.mntmSelectDatabase ){
+				String originalDatabasePath = View.this.database.getFilePath();
 				JFileChooser fc = new JFileChooser();
 				int result = fc.showOpenDialog(View.this);
 				if (result == fc.APPROVE_OPTION){
 					File f = fc.getSelectedFile();
 					try {
-						View.this.configuration.setDatabasePath(f.getAbsolutePath());
-						View.this.database = new DBReader(View.this.configuration.getDatabasePath());
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(View.this, "Error while saving configuration.\nDoes the config file exist ?\nDoes the database you selected exists ?", "Error", JOptionPane.ERROR_MESSAGE);
+						View.this.database = new DBReader(fc.getSelectedFile().getAbsolutePath());
+					}
+					catch (Exception e1) {
+						JOptionPane.showMessageDialog(View.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+						return;
 					}
 					
 					try {
@@ -211,6 +215,14 @@ public class View extends JFrame{
 
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(View.this, "Error while reading database.\nMake sure it is a PuttyCM database", "Error", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					
+					try{
+						View.this.configuration.setDatabasePath(f.getAbsolutePath());
+					}
+					catch (ConfigurationException e1) {
+						JOptionPane.showMessageDialog(View.this, "Error while saving configuration.\nDoes the config file exist ?\nDoes the database you selected exists ?", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					
 					
