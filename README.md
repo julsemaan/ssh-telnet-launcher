@@ -10,8 +10,10 @@
 
 *This program is developed using Java*
 
-  - The SSHTelnetLauncher is a program that reads a PuttyCM database (xml) and displays it in a tree form.
-  - It was built for Ubuntu but i'm sure it will work for any other distro that has xterm.
+  - The SSHTelnetLauncher is a program that reads a PuttyCM database (xml) and displays in the same way PuttyCM or SuperPutty would do.
+  - It allows you to use an existing PuttyCM database and launch it's connections.
+  - It was built for Ubuntu but i'm sure it will work for any other Linux distribution that has xterm.
+  - This program doesn't use putty.exe as it's backend, it simply uses the available commands for Linux.
   - It is used to launch an xterm with an ssh or telnet process that will connect to the specified PuttyCM connection.
   - No support for stored password, commands. Only supports the ip, protocol and connection name.
   - Supports only one database at a time.
