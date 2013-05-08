@@ -7,6 +7,7 @@ do
 		echo "Please type the user for which you want to install the unity launcher (the name of your home folder under /home) :"
 		read user
 		cp addons/SSHTelnetLauncher.desktop /home/$user/.local/share/applications/SSHTelnetLauncher.desktop
+		chmod a+x /home/$user/.local/share/applications/SSHTelnetLauncher.desktop
 	elif [ $arg = "--xterm-conf" ]; then
 		echo "xterm configuration installation"
 		echo "Please type the user for which you want to install the xterm configuration :"
@@ -16,6 +17,7 @@ do
 		echo "Installing software"
 		cp -R ./ /usr/local/lib/sshtelnetlauncher
 		chmod a+rwx /usr/local/lib/sshtelnetlauncher/sshtellaunch.conf
+		chmod a+x /usr/local/lib/sshtelnetlauncher/SSHTelnetLauncher
 	elif [ $arg = "--uninstall" ];then
 		echo "Uninstalling software"
 		rm -rf /usr/local/lib/sshtelnetlauncher
