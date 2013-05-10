@@ -127,6 +127,7 @@ public class View extends JFrame{
 		tree.addMouseListener(new TreeClickListener());
 		panelTree.add(tree);
 		scrollPane = new JScrollPane(panelTree);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		mainPanel.add(scrollPane, BorderLayout.CENTER);
 		//scrollPane.setPreferredSize(new Dimension(300,450));
 		this.setSize(400,600);
